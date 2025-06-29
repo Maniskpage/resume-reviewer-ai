@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Resume Reviewer</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 40px;
+          background-color: #f4f4f4;
+        }
+        textarea, #output {
+          width: 100%;
+          padding: 15px;
+          margin-top: 15px;
+          font-size: 16px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+        }
+        button {
+          margin-top: 20px;
+          padding: 12px 20px;
+          font-size: 16px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>🚀 AI Resume Reviewer</h1>
+
+<textarea id="resumeInput" rows="10" placeholder="Paste your resume here..."></textarea>
+<button onclick="reviewResume()">Review My Resume</button>
+
+<h2>🔍 AI Suggestions:</h2>
+<pre id="output"></pre>
+
+<script>
+    async function reviewResume() {
+      const resumeText = document.getElementById('resumeInput').value;
+      const output = document.getElementById('output');
+      output.textContent = "⏳ Analyzing... Please wait...";
+
+      try {
+        const response = await fetch('/review', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain'
+          },
+          body: resumeText
+        });
+
+        const result = await response.text();
+        output.textContent = result;
+      } catch (error) {
+        output.textContent = "❌ Failed to connect to backend: " + error;
+      }
+    }
+</script>
+</body>
+</html>
+
+</html>
