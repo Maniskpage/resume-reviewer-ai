@@ -9,7 +9,7 @@ import java.util.*;
 @Service
 public class ResumeService {
     private static final String OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
-    private static final String API_KEY = "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"; // Your OpenRouter key
+    private static final String API_KEY = "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"; // Your OpenRouter key
     private static final String DEEPSEEK_MODEL = "openai/gpt-4.1";
 
     public String reviewWithAI(String resumeText) {
